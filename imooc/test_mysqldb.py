@@ -2,16 +2,18 @@
 import pymysql
 
 # connect mysql database
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root',db='tkkj')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='tkkj')
+# conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root',db='tkkj')
 cur = conn.cursor()
-cur.execute('select * from pytest')
+cur.execute('select * from python_test')
+# cur.execute('select * from pytest')
 
 for r in cur.fetchall():
     print(r)
 
+print('已经连接本地数据库')
 cur.close()  # close cursor object
 conn.close()  # close connect
-
 
 #############################
 # cur.fetchone()  # 返回结果集的下一行
@@ -19,6 +21,184 @@ conn.close()  # close connect
 # cur.fetchall()  # 返回结果集的所有行
 # cur.rowcount()   # 返回最后一次execute返回数据的行数或影响行数
 
-cur.rownumber  # 相当于指针
+# cur.rownumber  # 相当于指针
+
+print('Hello World')
+
+print('%2d-%02d' % (3, 1))
+print('%.2f' % 3.1415926)
+print('Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125))
+
+# 计算提成了多少百分点
+
+score1 = 72
+score2 = 85
+r = score2 - score1
+
+print('成绩提升了 {0:.1f}%'.format(r / score1 * 100))
+print(r / score1)
+
+#  list实例
+classmates = ['Tom', 'Bob', 'Marry']
+print(classmates)
+print(len(classmates))
+print(classmates[0])
+print(classmates[1])
+print(classmates[2])  # 获取最后一个元素，注意元素末位的索引是len-1，因为是从0开始计数
+print(classmates[-1])  # 获取最后一个原始，用-1作索引
+
+classmates.append('James')  # 在末尾追加一个元素
+print(classmates)
+
+classmates.insert(1, 'Tony')  # 将元素插入到指定位置
+print(classmates)
+
+classmates.pop()  # 删除末尾元素，pop()不指定默认为-1
+print(classmates)
+classmates.pop(1)  # 删除指定位置的元素，即第二个元素
+print(classmates)
+
+classmates[0] = 'Sam'  # 把某个元素替换成别的元素
+print(classmates)
+
+#  tuple元组
+t = ();
+print(t)
+
+t = (1,)  # 定义只有一个元素的元组时，必须要加,来消除歧义。
+print(t)
+
+L = [
+    ['Apple', 'Google', 'Microsoft'],
+    ['Java', 'Python', 'Ruby', 'PHP'],
+    ['Adam', 'Bart', 'Lisa']
+]
+
+print(L[0][0])
+print(L[1][1])
+print(L[2][2])
+
+print(L[-1])
+
+# input 带有条件的判断
+
+# s = input('birth: ')
+# birth = int(s)  # 将str类型转换成int类型
+# if birth >= 2000:
+#     print('00后')
+# else:
+#     print('00前')
+
+weight = 48
+height = 1.63
+
+BMI = weight / (height * height)
+
+if BMI < 18.5:
+    print('过轻')
+elif BMI < 25:
+    print('正常')
+elif BMI < 28:
+    print('过重')
+elif BMI < 32:
+    print('肥胖')
+else:
+    print('严重肥胖')
+
+# 循环遍历
+names = ['Tom', 'Jane', 'Marry']
+for name in names:
+    print(name)
+
+sum = 0
+for x in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    sum = sum + x
+print(sum)
+
+# range()表示生成0-(X-1)的整数序列
+print(list(range(5)))
+
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+
+n = 0
+while n <= 100:
+    print(n)
+    if n > 10:
+        break  # break可以提前结束循环
+    n += 1
+print('END')
+
+n = 0
+while n < 10:
+    n += 1
+    if n % 2 == 0:
+        continue  # 用continue语句跳过某些循环
+    print(n)
+print('END')
+
+# dict 相当于map
+d = {'Marry': 95, 'Tom': 90}
+print(d['Marry'])
+
+print('Marry' in d)  # 通过in判断是否存在key
+s = d.get('Tom', -1)
+print(s)
+print(d.get('Tomas'))  # None
+print(d.get('Tomas'), -1)  # None
+
+print(d.pop('Tom'))
+print(d)
+
+# set  也是一组key的集合，但是不存储value。由于key不能重复，所以在key中没有重复的key，
+# 要创建一个set，需要提供一个list作为输入集合
+s = set([1, 2, 2, 3, 3])
+print(s)
+s.add(4)
+print(s)
+s.remove(4)
+print(s)
+
+s1 = set([1, 2, 3])
+s3 = set([2, 3, 4])
+print(s1 & s3)
+print(s1 | s3)
+
+n1 = 255
+n2 = 1000
+print(str(n1) + ' 十六进制:' + hex(n1), str(n2) + ' 十六进制:' + hex(n2))
+print(str(n1) + ' 十六进制数：' + hex(n1), str(n2) + ' 十六进制数：' + hex(n2))
 
 
+# 定义函数
+def my_abs(x):
+    if not isinstance(x, (int, float)):  # 如果不是int 或者是float
+        raise TypeError('bad operand type')
+    if x >= 0:
+        return x
+    if x < 0:
+        return -x
+
+
+print(my_abs(-99))
+
+
+# 定义一个空函数
+def nop():
+    pass  # 什么都不做，用作占位符
+
+
+# 定义一个函数返回多个值
+import math
+
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+
+x, y = move(100, 100, 60, math.pi / 6)
+print(x, y)  # 返回的是一个tuple
