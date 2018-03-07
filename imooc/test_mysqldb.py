@@ -202,3 +202,74 @@ def move(x, y, step, angle=0):
 
 x, y = move(100, 100, 60, math.pi / 6)
 print(x, y)  # 返回的是一个tuple
+
+
+# 函数的参数（位置参数）
+def power(x, n):
+    sum = 1
+    while n > 0:
+        n -= 1
+        s = s * x
+    return s
+
+
+# 默认参数（n=2）
+def power1(x, n=2):
+    s = 1
+    while n > 0:
+        n -= 1
+        s = s * x
+    return s
+
+
+print(power1(5))  # None
+
+
+def enroll(name, gender, age=6, city='Beijing'):
+    print("name: ", name)
+    print("gender: ", gender)
+
+
+print(enroll('Mr.Zhang', 'M'))
+
+
+# 可变参数
+def add_end(L=None):
+    if L is None:
+        L = []
+    L.append('END')
+    return L
+
+
+print(add_end([1, 2, 2]))
+
+
+# 为什么要设计str、None这样的不变对象呢？
+# 因为不变对象一旦创建，对象内部的数据就不能修改，这样就减少了由于修改数据导致的错误。
+
+
+# 可变参数
+# 以数学题为例子，给定一组数字a，b，c……，请计算a2 + b2 + c2 + ……。
+# 要定义出这个函数，我们必须确定输入的参数。由于参数个数不确定，我们首先想到可以把a，b，c……作为一个list或tuple传进来，这样，函数可以定义如下：
+def calc(numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+
+
+print(calc([1, 2, 3]))
+
+
+# 定义可变参数,在函数参数前加一个*号
+def calc1(*numbers):
+    sum1 = 0
+    for number in numbers:
+        sum1 = sum1 + number * number
+    return sum1
+
+
+print(calc1(1, 2, 3))
+nums = [2,3,4]
+print(calc1(nums[0],nums[1],nums[2]))
+print(calc1(*nums))
