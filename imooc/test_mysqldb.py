@@ -270,6 +270,31 @@ def calc1(*numbers):
 
 
 print(calc1(1, 2, 3))
-nums = [2,3,4]
-print(calc1(nums[0],nums[1],nums[2]))
-print(calc1(*nums))
+nums = [2, 3, 4]
+print(calc1(nums[0], nums[1], nums[2]))
+print(calc1(*nums))  # 函数在调用时自动组装成一个tuple
+
+
+# 关键字参数,调用时内部自动组装为一个dict(map)
+def person(name, age, **kw):
+    print('name: ', name, 'age: ', age, 'other: ', kw)
+
+print(person('Paul', 20))
+print(person('Paul', 20, city = 'Beijing'))
+print(person('Paul', 20, gender='M', city='Beijing'))
+
+
+extra = {'City': 'Beijing', 'Job': 'Teacher'}
+print(person('Jack', 24, **extra))
+# **extra表示把extra这个dict的所有key-value用关键字参数传入到函数的**kw参数，kw将获得一个dict，
+# 注意kw获得的dict是extra的一份拷贝，对kw的改动不会影响到函数外的extra。
+
+
+# 命名关键字参数
+def students(sex, age, **kwargs):
+    if 'age' in kwargs:
+        # 有age参数
+        pass
+    print('sex: ', sex, 'age: ', age, 'other: ', kwargs)
+
+print(students('M', 24, city='Chengdu'))
